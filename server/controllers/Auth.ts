@@ -251,10 +251,10 @@ export const login = async (req: Request, res: Response) => {
 }
 
 //Changing Password
-exports.changePassword = async (req: Request, res: Response) => {
+export const changePassword = async (req, res) => {
   try {
     // 1.Get user data from req.user
-    const userDetails = await User.findById((req as any).user?.id)
+    const userDetails = await User.findById(req.user?.id)
     if (!userDetails) {
       return res.status(404).json({
         success: false,
