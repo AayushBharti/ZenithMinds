@@ -5,7 +5,7 @@ import dotenv from "dotenv"
 dotenv.config()
 
 //auth
-exports.auth = async (req, res, next: NextFunction) => {
+export const auth = async (req, res, next: NextFunction) => {
   try {
     //extract token
     const token =
@@ -79,7 +79,7 @@ export const isInstructor = async (req, res, next: NextFunction) => {
 }
 
 //isAdmin
-exports.isAdmin = async (req, res, next: NextFunction) => {
+export const isAdmin = async (req, res, next: NextFunction) => {
   try {
     if (req.user.accountType !== "Admin") {
       return res.status(401).json({
