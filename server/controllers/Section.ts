@@ -62,7 +62,6 @@ export const createSection = async (req: Request, res: Response) => {
   }
 }
 
-
 // UPDATE a section
 export const updateSection = async (req: Request, res: Response) => {
   try {
@@ -116,4 +115,27 @@ export const updateSection = async (req: Request, res: Response) => {
   }
 }
 
-
+// DELETE a section
+exports.deleteSection = async (req: Request, res: Response) => {
+  try {
+    const { sectionId, courseId } = req.body
+    await Section.findByIdAndDelete(sectionId)
+    const updatedCourse = await Course.findById(courseId)
+      .populate({
+        path: "courseContent",
+        populate: { path: "subSection" },
+      })
+      .exec()
+    res.status(200).json({
+      success: true,
+      message: "Section deleted",
+      updatedCourse,
+    })
+  } catch (error) {
+    console.error("Error deleting section:", error)
+    res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    })
+  }
+}
