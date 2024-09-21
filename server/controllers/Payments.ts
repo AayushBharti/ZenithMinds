@@ -1,3 +1,4 @@
+import { Request, Response } from "express"
 import { instance } from "../config/razorpay"
 import Course from "../models/Course"
 import User from "../models/User"
@@ -8,7 +9,7 @@ import { default as mongoose } from "mongoose"
 import crypto from "crypto"
 import CourseProgress from "../models/CourseProgress"
 
-export const capturePayment = async (req, res) => {
+export const capturePayment = async (req: Request, res: Response) => {
   //get courseId and UserID
   const { courses } = req.body
   const userId = req.user.id
@@ -51,7 +52,7 @@ export const capturePayment = async (req, res) => {
         return res.status(500).json({
           success: false,
           message: "Error processing course",
-          error: error.message,
+          error: (error as Error).message,
         })
       }
     }
@@ -80,7 +81,7 @@ export const capturePayment = async (req, res) => {
       return res.status(500).json({
         success: false,
         message: "Error initiating payment",
-        error: error.message,
+        error: (error as Error).message,
       })
     }
   } catch (error) {
@@ -89,13 +90,13 @@ export const capturePayment = async (req, res) => {
     return res.status(500).json({
       success: false,
       message: "Internal server error",
-      error: error.message,
+      error: (error as Error).message,
     })
   }
 }
 
 //verify the signature
-export const verifySignature = async (req, res) => {
+export const verifySignature = async (req: Request, res: Response) => {
   try {
     // Extract payment and course details from the request body
     const {
@@ -199,7 +200,7 @@ export const verifySignature = async (req, res) => {
         console.error("Error during course enrollment:", error)
         return res.status(500).json({
           success: false,
-          message: error.message,
+          error: (error as Error).message,
         })
       }
     }
@@ -225,13 +226,13 @@ export const verifySignature = async (req, res) => {
     return res.status(500).json({
       success: false,
       message: "Internal server error",
-      error: error.message,
+      error: (error as Error).message,
     })
   }
 }
 
 //send email
-export const sendPaymentSuccessEmail = async (req, res) => {
+export const sendPaymentSuccessEmail = async (req: Request, res: Response) => {
   const { amount, paymentId, orderId } = req.body
   const userId = req.user.id
   if (!amount || !paymentId) {
@@ -254,7 +255,7 @@ export const sendPaymentSuccessEmail = async (req, res) => {
       paymentSuccess(
         amount / 100,
         paymentId,
-        orderId, 
+        orderId,
         enrolledStudent.firstName,
         enrolledStudent.lastName
       )
@@ -263,7 +264,7 @@ export const sendPaymentSuccessEmail = async (req, res) => {
     console.error(error)
     return res.status(500).json({
       success: false,
-      message: error.message,
+      error: (error as Error).message,
     })
   }
 }

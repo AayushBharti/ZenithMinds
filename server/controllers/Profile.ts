@@ -1,8 +1,9 @@
+import { Request, Response } from "express"
 import Profile from "../models/Profile"
 import User from "../models/User"
 
 // Method for updating a profile
-export const updateProfile = async (req, res) => {
+export const updateProfile = async (req: Request, res: Response) => {
   try {
     // Extract profile update data from the request body
     const {
@@ -55,12 +56,12 @@ export const updateProfile = async (req, res) => {
     return res.status(500).json({
       success: false,
       message: "Internal server error",
-      error: error.message,
+      error: (error as Error).message,
     })
   }
 }
 
-export const deleteAccount = async (req, res) => {
+export const deleteAccount = async (req: Request, res: Response) => {
   try {
     // TODO: Job Schedule this request for 5 days
 
@@ -95,7 +96,7 @@ export const deleteAccount = async (req, res) => {
     return res.status(500).json({
       success: false,
       message: "User cannot be deleted successfully",
-      error: error.message,
+      error: (error as Error).message,
     })
   }
 }
@@ -153,12 +154,12 @@ export const deleteAccount = async (req, res) => {
 //     return res.status(500).json({
 //       success: false,
 //       message: "Error scheduling account deletion",
-//       error: error.message,
+//       error: (error as Error).message,
 //     })
 //   }
 // }
 
-export const getAllUserDetails = async (req, res) => {
+export const getAllUserDetails = async (req: Request, res: Response) => {
   try {
     const id = req.user.id
     const userDetails = await User.findById(id)
@@ -173,7 +174,7 @@ export const getAllUserDetails = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
       success: false,
-      message: error.message,
+      message: (error as Error).message,
     })
   }
 }

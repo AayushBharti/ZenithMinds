@@ -1,14 +1,15 @@
+import { Request, Response } from "express"
 import Section from "../models/Section"
 import SubSection from "../models/SubSection"
 import Course from "../models/Course"
 import { uploadImageToCloudinary } from "../utils/imageUploader"
 
 // Create a new sub-section for a given section
-export const createSubSection = async (req, res) => {
+export const createSubSection = async (req: Request, res: Response) => {
   try {
     // Extract necessary information from the request body
     const { sectionId, title, description, courseId } = req.body
-    const video = req.files.videoFile
+    const video = req.files?.videoFile
 
     // Check if all necessary fields are provided
     if (!sectionId || !title || !description || !video || !courseId) {
@@ -65,13 +66,13 @@ export const createSubSection = async (req, res) => {
     return res.status(500).json({
       success: false,
       message: "Internal server error. Please try again later.",
-      error: error.message,
+      error: (error as Error).message,
     })
   }
 }
 
 // UPDATE a sub-section
-export const updateSubSection = async (req, res) => {
+export const updateSubSection = async (req: Request, res: Response) => {
   try {
     // Extract necessary information from the request body
     const { SubsectionId, title, description, courseId } = req.body
@@ -132,13 +133,15 @@ export const updateSubSection = async (req, res) => {
     return res.status(500).json({
       success: false,
       message: "Internal server error",
-      error: error.message,
+      error: (error as Error).message,
     })
   }
 }
 
-
-export const deleteSubSection = async (req, res): Promise<Response> => {
+export const deleteSubSection = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
   try {
     // Extract subSectionId, sectionId, and courseId from the request body
     const { subSectionId, sectionId, courseId } = req.body
@@ -196,7 +199,7 @@ export const deleteSubSection = async (req, res): Promise<Response> => {
     return res.status(500).json({
       success: false,
       message: "Internal server error",
-      error: error.message,
+      error: (error as Error).message,
     })
   }
 }

@@ -57,7 +57,7 @@ export const createSection = async (req: Request, res: Response) => {
     res.status(500).json({
       success: false,
       message: "Internal server error",
-      error: error.message,
+      error: (error as Error).message,
     })
   }
 }

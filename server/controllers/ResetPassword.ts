@@ -4,18 +4,8 @@ import mailSender from "../utils/mailSender"
 import bcrypt from "bcrypt"
 import crypto from "crypto"
 
-// Define the types of the request body
-interface ResetPasswordRequest extends Request {
-  body: {
-    email?: string
-    password?: string
-    confirmPassword?: string
-    token?: string
-  }
-}
-
 export const resetPasswordToken = async (
-  req: ResetPasswordRequest,
+  req: Request,
   res: Response
 ) => {
   try {
@@ -65,7 +55,7 @@ export const resetPasswordToken = async (
     })
   } catch (error) {
     return res.json({
-      error: error.message,
+      error: (error as Error).message,
       success: false,
       message: `Some Error in Sending the Reset Message`,
     })
@@ -73,7 +63,7 @@ export const resetPasswordToken = async (
 }
 
 export const resetPassword = async (
-  req: ResetPasswordRequest,
+  req: Request,
   res: Response
 ) => {
   try {
