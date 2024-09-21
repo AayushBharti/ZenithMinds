@@ -1,10 +1,10 @@
+import { Request, Response } from "express"
 import bcrypt from "bcrypt"
 import User from "../models/User"
 import OTP from "../models/OTP"
 import jwt from "jsonwebtoken"
 import otpGenerator from "otp-generator"
 import mailSender from "../utils/mailSender"
-import { Request, Response } from "express"
 import { passwordUpdated } from "../mail/templates/passwordUpdate"
 import Profile from "../models/Profile"
 import dotenv from "dotenv"
@@ -65,8 +65,11 @@ export const sendotp = async (req: Request, res: Response) => {
       otp,
     })
   } catch (error) {
-    console.log(error.message)
-    return res.status(500).json({ success: false, error: error.message })
+    // console.log(error.message)
+    return res.status(500).json({
+      success: false,
+      error: (error as Error).message,
+    })
   }
 }
 
@@ -213,7 +216,7 @@ export const login = async (req: Request, res: Response) => {
         id: user._id,
         accountType: user.accountType,
       }
-      const token = jwt.sign(payload, process.env.JWT_SECRET, {
+      const token = jwt.sign(payload, process.env.JWT_SECRET as string, {
         expiresIn: "24h",
       })
 
@@ -251,7 +254,7 @@ export const login = async (req: Request, res: Response) => {
 }
 
 //Changing Password
-export const changePassword = async (req, res) => {
+export const changePassword = async (req: Request, res: Response) => {
   try {
     // 1.Get user data from req.user
     const userDetails = await User.findById(req.user?.id)
@@ -303,7 +306,7 @@ export const changePassword = async (req, res) => {
     try {
       const emailResponse = await mailSender(
         updatedUserDetails?.email || "",
-        "Study Notion - Password Updated",
+        "Zenith Minds - Password Updated",
         passwordUpdated(
           updatedUserDetails?.email || "",
           `Password updated successfully for ${updatedUserDetails?.firstName} ${updatedUserDetails?.lastName}`
@@ -316,7 +319,7 @@ export const changePassword = async (req, res) => {
       return res.status(500).json({
         success: false,
         message: "Error occurred while sending email",
-        error: error.message,
+        error: (error as Error).message,
       })
     }
 
@@ -330,7 +333,7 @@ export const changePassword = async (req, res) => {
     return res.status(500).json({
       success: false,
       message: "Error occurred while updating password",
-      error: error.message,
+      error: (error as Error).message,
     })
   }
 }
