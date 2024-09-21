@@ -1,4 +1,9 @@
-export const courseEnrollmentEmail = (courseName: string, name: string) => {
+export const courseEnrollmentEmail = (
+  courseName: string,
+  name: string,
+  courseDescription: string,
+  thumbnail: string
+) => {
   return `<!DOCTYPE html>
     <html>
     
@@ -74,6 +79,8 @@ export const courseEnrollmentEmail = (courseName: string, name: string) => {
                 <p>Dear ${name},</p>
                 <p>You have successfully registered for the course <span class="highlight">"${courseName}"</span>. We
                     are excited to have you as a participant!</p>
+                    ${courseDescription}
+                    ${thumbnail}
                 <p>Please log in to your learning dashboard to access the course materials and start your learning journey.
                 </p>
                 <a class="cta" href="https://Zenith.vercel.app/dashboard">Go to Dashboard</a>
