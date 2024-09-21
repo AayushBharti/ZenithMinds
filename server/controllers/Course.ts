@@ -1,11 +1,11 @@
+import { Request, Response } from "express"
 import Category from "../models/Category"
 import Course from "../models/Course"
 import User from "../models/User"
 import { uploadImageToCloudinary } from "../utils/imageUploader"
 
-
 // Function to create a new course
-export const createCourse = async (req, res) => {
+export const createCourse = async (req: Request, res: Response) => {
   try {
     // Get user ID from request object
     const userId = req.user.id
@@ -24,7 +24,7 @@ export const createCourse = async (req, res) => {
     let status = req.body
 
     // Get thumbnail image from request files
-    const thumbnail = req.files.thumbnailImage
+    const thumbnail = req.files?.thumbnailImage
 
     // Check if any of the required fields are missing
     if (
@@ -121,12 +121,13 @@ export const createCourse = async (req, res) => {
     res.status(500).json({
       success: false,
       message: "Failed to create course",
-      error: error.message,
+      error: (error as Error).message,
     })
   }
 }
 
-export const getAllCourses = async (req, res) => {
+//getALlCourses
+export const getAllCourses = async (req: Request, res: Response) => {
   try {
     const allCourses = await Course.find(
       {},
@@ -151,7 +152,54 @@ export const getAllCourses = async (req, res) => {
     return res.status(404).json({
       success: false,
       message: `Can't Fetch Course Data`,
-      error: error.message,
+      error: (error as Error).message,
+    })
+  }
+}
+
+//getCourseDetails
+export const getCourseDetails = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  try {
+    const { courseId } = req.body
+
+    // Fetch course details with multiple levels of population
+    const courseDetails = await Course.findById(courseId)
+      .populate({ path: "instructor", populate: { path: "additionalDetails" } })
+      .populate("category")
+      .populate({
+        // Only populate specific fields from user model in ratingAndReviews
+        path: "ratingAndReviews",
+        populate: {
+          path: "user",
+          select: "firstName lastName accountType image",
+        },
+      })
+      .populate({ path: "courseContent", populate: { path: "subSection" } })
+      .exec()
+
+    // Check if course details exist
+    if (!courseDetails) {
+      return res.status(404).json({
+        success: false,
+        message: "Course Not Found",
+      })
+    }
+
+    // Return successful response with course data
+    return res.status(200).json({
+      success: true,
+      message: "Course fetched successfully",
+      data: courseDetails,
+    })
+  } catch (error) {
+    console.error("Error fetching course details:", error)
+    return res.status(500).json({
+      success: false,
+      message: `Can't Fetch Course Data`,
+      error: (error as Error).message,
     })
   }
 }
