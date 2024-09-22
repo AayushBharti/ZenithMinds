@@ -2,13 +2,11 @@
 import { Request } from "express"
 import { UploadedFile } from "express-fileupload"
 
-// export {}
-
 // Extend the Express Request interface
 declare global {
   namespace Express {
     interface Request {
-      user: {
+      user?: {
         id: string
         email: string
         accountType: string

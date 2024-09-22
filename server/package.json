@@ -1,12 +1,9 @@
 {
   "name": "zenith-server",
   "version": "1.0.0",
-  "main": "index.js",
   "scripts": {
-    "start": "node dist/server.js",
-    "dev0": "ts-node src/server.ts",
-    "dev": "nodemon src/server.ts",
-    "build": "tsc"
+    "dev": "nodemon",
+    "start": "ts-node --esm index.ts"
   },
   "keywords": [],
   "author": "",
@@ -14,19 +11,39 @@
   "description": "",
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^2.5.0",
     "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "crypto-random-string": "^5.0.0",
     "dotenv": "^16.4.5",
-    "express": "^4.20.0",
+    "express": "^4.21.0",
+    "express-fileupload": "^1.5.1",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.6.1",
+    "mongoose": "^8.6.3",
+    "node-schedule": "^2.1.1",
     "nodemailer": "^6.9.15",
-    "otp-generator": "^4.0.1"
+    "otp-generator": "^4.0.1",
+    "razorpay": "^2.9.4",
+    "tsc": "^2.0.4"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/cookie-parser": "^1.4.7",
+    "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
-    "@types/node": "^22.5.4",
-    "nodemon": "^3.1.4",
+    "@types/express-fileupload": "^1.5.1",
+    "@types/jsonwebtoken": "^9.0.7",
+    "@types/node": "^22.5.5",
+    "@types/nodemailer": "^6.4.16",
+    "@types/otp-generator": "^4.0.2",
+    "nodemon": "^3.1.7",
     "ts-node": "^10.9.2",
-    "typescript": "^5.6.2"
+    "typescript": "^5.6.2",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.20.0",
+    "prettier": "^2.7.1",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1"
   }
 }

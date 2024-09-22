@@ -9,6 +9,7 @@
 
 
 /Server/dist
+/dist
 
 # testing
 /coverage
