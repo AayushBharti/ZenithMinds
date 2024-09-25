@@ -2,6 +2,7 @@ import "./globals.css"
 import type { Metadata } from "next"
 import localFont from "next/font/local"
 import { cn } from "@/lib/utils"
+import { ThemeProvider } from "../components/ThemeProviders"
 
 const geistSans = localFont({
   src: "../public/fonts/GeistVF.woff",
@@ -19,7 +20,8 @@ export const metadata: Metadata = {
     default: "Zentih Minds",
     template: `%s | "Zentih Minds"`,
   },
-  description: "Zentih Minds is a platform for learning and exploring the world of AI and technology.",
+  description:
+    "Zentih Minds is a platform for learning and exploring the world of AI and technology.",
   icons: {
     icon: "/favicon.ico",
   },
@@ -31,7 +33,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head />
       <body
         className={cn(
           "relative h-full antialiased",
@@ -39,7 +42,14 @@ export default function RootLayout({
           geistMono.variable
         )}
       >
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   )
