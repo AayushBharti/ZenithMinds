@@ -1,132 +1,237 @@
 export const HomePageExplore = [
   {
-    tag: "Free",
+    tag: "Free Courses",
     courses: [
       {
-        heading: "Learn HTML",
+        heading: "Mastering HTML",
         description:
-          "This course covers the basic concepts of HTML including creating and structuring web pages, adding text, links, images, and more.",
+          "Learn how to structure web pages with HTML, including adding text, links, images, and more. Start building the foundation of web development.",
         level: "Beginner",
         lessionNumber: 6,
       },
       {
-        heading: "Learn CSS",
+        heading: "Advanced CSS Techniques",
         description:
-          "This course explores advanced topics in HTML5 and CSS3, including animations, transitions, and layout techniques and various other features.",
+          "Dive deeper into CSS3 and HTML5, mastering animations, transitions, and responsive layouts to create visually stunning websites.",
+        level: "Intermediate",
+        lessionNumber: 8,
+      },
+      {
+        heading: "Responsive Web Design",
+        description:
+          "Build responsive websites that adapt seamlessly to different devices and screen sizes using modern techniques and best practices.",
+        level: "Intermediate",
+        lessionNumber: 7,
+      },
+      {
+        heading: "Getting Started with Git",
+        description:
+          "Learn the basics of Git, a version control system. Understand key commands, branching, and collaboration techniques.",
+        level: "Beginner",
+        lessionNumber: 5,
+      },
+      {
+        heading: "Introduction to SEO",
+        description:
+          "Understand the fundamentals of SEO and how to optimize your web pages to rank better in search engines.",
         level: "Beginner",
         lessionNumber: 6,
       },
       {
-        heading: "Responsive Web design",
+        heading: "Building Personal Websites",
         description:
-          "This course teaches responsive web design techniques, allowing web pages to adapt to different devices and screen sizes",
+          "Create a fully functional personal website using HTML, CSS, and JavaScript from scratch.",
         level: "Beginner",
+        lessionNumber: 9,
+      },
+    ],
+  },
+  {
+    tag: "Beginner Friendly",
+    courses: [
+      {
+        heading: "JavaScript Fundamentals",
+        description:
+          "Start your journey with JavaScript by learning key concepts like variables, functions, loops, and manipulating the DOM.",
+        level: "Beginner",
+        lessionNumber: 6,
+      },
+      {
+        heading: "Python Essentials",
+        description:
+          "Begin coding with Python by understanding its syntax, data structures, and core concepts through hands-on projects.",
+        level: "Beginner",
+        lessionNumber: 7,
+      },
+      {
+        heading: "SQL Basics",
+        description:
+          "Get introduced to SQL with essential database operations. Learn to query, update, and manage data using SQL with PostgreSQL.",
+        level: "Beginner",
+        lessionNumber: 5,
+      },
+      {
+        heading: "Introduction to Java",
+        description:
+          "Learn the basics of Java programming language including object-oriented programming, syntax, and data structures.",
+        level: "Beginner",
+        lessionNumber: 6,
+      },
+      {
+        heading: "Getting Started with C++",
+        description:
+          "Explore the basics of C++, focusing on control structures, functions, and classes to solve programming challenges.",
+        level: "Beginner",
+        lessionNumber: 8,
+      },
+      {
+        heading: "Intro to Bash Scripting",
+        description:
+          "Learn how to automate tasks in Unix/Linux systems using Bash scripting and common terminal commands.",
+        level: "Intermediate",
         lessionNumber: 6,
       },
     ],
   },
   {
-    tag: "New to coding",
-    courses: [
-      {
-        heading: "JavaScript Basics",
-        description:
-          " Learn the fundamentals of JavaScript programming, including variables, data types, functions, control structures, and DOM manipulation.",
-        level: "Beginner",
-        lessionNumber: 6,
-      },
-      {
-        heading: "Python for Beginners",
-        description:
-          "Dive into the world of Python programming, covering syntax, data structures, control flow, functions, and file handling.",
-        level: "Beginner",
-        lessionNumber: 6,
-      },
-      {
-        heading: "Introduction to SQL",
-        description:
-          "Learn the fundamentals of SQL, including database structures, how to write SQL queries, and how to navigate the PostgreSQL database server.",
-        level: "Beginner",
-        lessionNumber: 6,
-      },
-    ],
-  },
-  {
-    tag: "Most popular",
+    tag: "Trending Now",
     courses: [
       {
         heading: "Mobile App Development",
         description:
-          "Explore the fundamentals of mobile app development, covering UI design, navigation, data storage, and deployment for iOS and Android platforms.",
+          "Learn the core concepts of mobile app development. Build apps from scratch with intuitive UI, navigation, and data storage.",
         level: "Beginner",
         lessionNumber: 6,
       },
       {
-        heading: "Web Development with React",
+        heading: "React for Web Development",
         description:
-          "Learn the fundamentals of React, including JSX, the Virtual DOM, props, state, event handling, and working with data and APIs.",
-        level: "Beginner",
-        lessionNumber: 6,
+          "Unlock the potential of React, learning its core concepts like JSX, components, state, and building dynamic web applications.",
+        level: "Intermediate",
+        lessionNumber: 7,
       },
       {
-        heading: "Cybersecurity Essentials",
+        heading: "Cybersecurity 101",
         description:
-          "Learn the fundamentals of cybersecurity, including how to detect threats, protect systems and networks, and anticipate potential cyber attacks.",
-        level: "Beginner",
-        lessionNumber: 6,
+          "Gain knowledge in cybersecurity fundamentals, protecting networks, identifying threats, and securing sensitive information.",
+        level: "Intermediate",
+        lessionNumber: 8,
+      },
+      {
+        heading: "Blockchain Fundamentals",
+        description:
+          "Learn the basics of blockchain technology, including cryptography, consensus mechanisms, and smart contracts.",
+        level: "Advanced",
+        lessionNumber: 9,
+      },
+      {
+        heading: "Data Science with Python",
+        description:
+          "Discover how to analyze and visualize data using Python libraries like Pandas, NumPy, and Matplotlib.",
+        level: "Intermediate",
+        lessionNumber: 8,
+      },
+      {
+        heading: "DevOps Essentials",
+        description:
+          "Explore the world of DevOps, including CI/CD, containerization with Docker, and orchestration with Kubernetes.",
+        level: "Advanced",
+        lessionNumber: 10,
       },
     ],
   },
   {
-    tag: "Skills paths",
+    tag: "Skill Development",
     courses: [
       {
-        heading: "Flask",
+        heading: "Building with Flask",
         description:
-          "Discover the fundamentals of web development with Flask, a Python-based microframework. Learn to build dynamic web applications, handle routes, manage templates, and interact with databases.",
+          "Explore Flask, a Python framework, and learn to develop robust web applications with dynamic routes and database integration.",
         level: "Beginner",
-        lessionNumber: 6,
+        lessionNumber: 7,
       },
       {
-        heading: "Django",
+        heading: "Django Web Development",
         description:
-          "Learn the fundamentals of web development with Django 2 by building a portfolio website with HTML, CSS, Python, and Django.",
-        level: "Beginner",
-        lessionNumber: 6,
+          "Master Django by creating a full-featured web app. Learn templating, database interaction, and deploy your project live.",
+        level: "Intermediate",
+        lessionNumber: 9,
       },
       {
-        heading: "Fast API",
+        heading: "FastAPI for Modern Apps",
         description:
-          "Learn the fundamentals of FastAPI, a Python-based framework for building web applications quickly and efficiently using modern software design principles.",
+          "Learn FastAPI, a cutting-edge Python framework for building APIs, and create highly performant, production-ready applications.",
+        level: "Intermediate",
+        lessionNumber: 8,
+      },
+      {
+        heading: "Node.js and Express",
+        description:
+          "Learn how to build back-end services using Node.js and Express. Handle requests, routes, and integrate databases.",
         level: "Beginner",
-        lessionNumber: 6,
+        lessionNumber: 7,
+      },
+      {
+        heading: "REST API Development",
+        description:
+          "Master the creation of RESTful APIs using different tools and frameworks like Django and Flask.",
+        level: "Intermediate",
+        lessionNumber: 8,
+      },
+      {
+        heading: "Building Microservices with Node",
+        description:
+          "Learn how to design and develop scalable microservices using Node.js and communicate between them with event-driven architectures.",
+        level: "Advanced",
+        lessionNumber: 10,
       },
     ],
   },
   {
-    tag: "Career paths",
+    tag: "Career Growth",
     courses: [
       {
-        heading: "Next.js",
+        heading: "Next.js Essentials",
         description:
-          "Learn the fundamentals of Next.js, a React framework for building server-side rendered and statically generated React applications.",
+          "Discover Next.js, a powerful React framework for building highly optimized, server-rendered applications with ease.",
+        level: "Intermediate",
+        lessionNumber: 9,
+      },
+      {
+        heading: "Graphic Design Basics",
+        description:
+          "Develop a strong foundation in design principles, including typography, layout, and color theory, using Adobe Photoshop.",
         level: "Beginner",
         lessionNumber: 6,
       },
       {
-        heading: "Graphic Design Principles",
+        heading: "Sanity CMS for Developers",
         description:
-          "Learn the fundamentals of graphic design, including typography, imagery, composition, layout, and color theory in a hands-on approach using Photoshop.",
-        level: "Beginner",
-        lessionNumber: 6,
+          "Get hands-on with Sanity, a powerful headless CMS. Learn how to integrate structured content into any platform or application.",
+        level: "Intermediate",
+        lessionNumber: 7,
       },
       {
-        heading: "Sanity",
+        heading: "Building SaaS Applications",
         description:
-          "Learn the fundamentals of Sanity, a headless CMS for structured content that can be delivered through any channel.",
-        level: "Beginner",
-        lessionNumber: 6,
+          "Learn how to design, develop, and deploy software as a service (SaaS) applications with a focus on scalability and security.",
+        level: "Advanced",
+        lessionNumber: 10,
+      },
+      {
+        heading: "Agile Project Management",
+        description:
+          "Understand the core principles of Agile project management and how to implement them in software development projects.",
+        level: "Intermediate",
+        lessionNumber: 8,
+      },
+      {
+        heading: "Becoming a Full-Stack Developer",
+        description:
+          "Learn the skills needed to become a full-stack developer, covering front-end, back-end, and everything in between.",
+        level: "Advanced",
+        lessionNumber: 10,
       },
     ],
   },
-]
+];
