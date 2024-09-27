@@ -2,6 +2,9 @@
 import Hero from "@/components/Home/Hero"
 import CodeBlocks from "../components/Home/CodeBlocks"
 import HighlightText from "../components/Home/HighlightedText"
+import InstructorSection from "../components/Home/InstructorSection"
+import { Features } from "../components/Home/Features"
+import ExploreMore from "../components/Home/ExploreMore"
 
 export default function Home() {
   return (
@@ -11,7 +14,7 @@ export default function Home() {
       <CodeBlocks
         position={"lg:flex-row"}
         heading={
-          <div className="font-semibold text-2xl lg:text-4xl sm:w-full">
+          <div className="font-semibold text-4xl text-neutral-800 tracking-tighter dark:text-neutral-300">
             Unlock Your <HighlightText text={"coding potential "} />
             with our expertly crafted courses
           </div>
@@ -67,7 +70,7 @@ export default function Home() {
           @Controller('submit')
           export class SubmitController {
             @Post()
-            async submit(@Body() data: any): Promise<string> {
+            async submit(@Body() data:any): Promise<string>{
               try {
                 await this.processRequest(data);
                 return 'Request processed successfully';
@@ -76,6 +79,9 @@ export default function Home() {
         codeColor={"pink"}
         backgroudGradient={"grad2"}
       />
+      <ExploreMore />
+      <Features />
+      <InstructorSection />
     </main>
   )
 }
