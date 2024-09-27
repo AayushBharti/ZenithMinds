@@ -1,7 +1,7 @@
 import { TypeAnimation } from "react-type-animation"
 import { Button } from "../UI/button"
-import { ChevronRight } from "lucide-react"
 import Link from "next/link"
+import ArrowRight from "../UI/ArrowRight"
 
 const CodeBlocks = ({
   position,
@@ -35,17 +35,20 @@ const CodeBlocks = ({
       {/*Section 1*/}
       <div className="flex flex-col gap-8 lg:w-[50%] p-4">
         {heading}
-        <div className="text-richblack-200 tracking-wide text-sm py-4 md:text-lg">
+        <div className="text-left text-neutral-400 tracking-wide text-sm py-4 md:text-lg">
           {subheading}
         </div>
 
         <div className="flex gap-7 mt-7 pb-3">
           <Link href={ctabtn1.linkto}>
-            <Button variant={"default"}>
-              <div className="flex gap-2 items-center">
+            <Button
+              variant={"default"}
+              className="group flex cursor-pointer items-center whitespace-nowrap leading-[1.7em] transition-opacity duration-300 hover:opacity-80 space-x-2"
+            >
+              <p className="font-semibold transition-all duration-300 group-hover:-translate-x-1 group-hover:text-ocean mr-2">
                 {ctabtn1.btnText}
-                <ChevronRight className="w-4 h-4" />
-              </div>
+              </p>
+              <ArrowRight />
             </Button>
           </Link>
 
