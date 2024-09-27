@@ -29,7 +29,7 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <div className="bg-zinc-900">
+    <section id="footer" className="bg-zinc-900">
       <div className="flex lg:flex-row gap-8 items-center justify-between w-11/12 max-w-maxContent text-zinc-400 leading-6 mx-auto relative py-14 max-w-[1400px]">
         <div className="border-b w-[100%] flex flex-col lg:flex-row pb-5 border-zinc-700">
           {/* Section 1 */}
@@ -185,6 +185,6 @@ export default function Footer() {
           ))}
         </div>
       </div>
-    </div>
+    </section>
   )
 }
