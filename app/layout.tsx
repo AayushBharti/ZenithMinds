@@ -4,6 +4,7 @@ import localFont from "next/font/local"
 import { cn } from "@/lib/utils"
 import { ThemeProvider } from "../components/ThemeProviders"
 import Footer from "../components/Common/Footer"
+import { Toaster } from "react-hot-toast"
 
 const geistSans = localFont({
   src: "../public/fonts/GeistVF.woff",
@@ -28,6 +29,7 @@ export const metadata: Metadata = {
   },
 }
 
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -49,6 +51,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <Toaster />
           {children}
           <Footer />
         </ThemeProvider>
