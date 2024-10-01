@@ -102,6 +102,12 @@
   }
 }
 
+::selection {
+  background-color: #9e097454;
+  /* background color of the selected text */
+  /* color: #ffffff; text color of the selected text */
+}
+
 .grad {
   position: absolute;
   width: 372.95px;
