@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/navigation-menu"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { cn } from "@/lib/utils"
+import ProfileDropdown from "../Auth/ProfileDropDown"
 
 export default function Navbar() {
   const [token, setToken] = useState<string | null>(null)
@@ -39,7 +40,7 @@ export default function Navbar() {
   ]
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-14 items-center mx-auto">
         <Link href="/" className="flex items-center mr-6">
           <Book className="h-6 w-6 mr-2" />
@@ -104,15 +105,18 @@ export default function Navbar() {
 
         <div className="flex flex-1 items-center justify-end space-x-4">
           {token ? (
-            <Button variant="outline" size="icon">
-              <ShoppingCart className="h-4 w-4" />
-              <span className="sr-only">Cart</span>
-              {cartItemCount > 0 && (
-                <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-primary text-xs text-primary-foreground flex items-center justify-center">
-                  {cartItemCount}
-                </span>
-              )}
-            </Button>
+            <>
+              <Button variant="outline" size="icon">
+                <ShoppingCart className="h-4 w-4" />
+                <span className="sr-only">Cart</span>
+                {cartItemCount > 0 && (
+                  <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-primary text-xs text-primary-foreground flex items-center justify-center">
+                    {cartItemCount}
+                  </span>
+                )}
+              </Button>
+              <ProfileDropdown />
+            </>
           ) : (
             <>
               <Button variant="ghost" asChild className="hidden sm:inline-flex">
