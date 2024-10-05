@@ -1,6 +1,7 @@
 "use client"
 
 import { useForm } from "react-hook-form"
+import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 import { toast } from "react-hot-toast"
@@ -16,18 +17,16 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-
-const ACCOUNT_TYPE = {
-  STUDENT: "student",
-  INSTRUCTOR: "instructor",
-}
+import { sendOtp } from "@/utils/operations/authAPI"
+import { useAuthStore } from "../../store/useAuthStore"
+import { ACCOUNT_TYPE } from "../../data/constants"
 
 const formSchema = z
   .object({
     firstName: z.string().min(2, "First name must be at least 2 characters"),
     lastName: z.string().min(2, "Last name must be at least 2 characters"),
     email: z.string().email("Invalid email address"),
-    password: z.string().min(8, "Password must be at least 8 characters"),
+    password: z.string().min(6, "Password must be at least 6 characters"),
     confirmPassword: z.string(),
     accountType: z.enum([ACCOUNT_TYPE.STUDENT, ACCOUNT_TYPE.INSTRUCTOR]),
   })
@@ -37,6 +36,9 @@ const formSchema = z
   })
 
 export default function SignupForm() {
+  const router = useRouter()
+  const { setSignupData } = useAuthStore()
+  // 1. Define form
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -49,8 +51,17 @@ export default function SignupForm() {
     },
   })
 
+  // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values)
+
+    // Setting signup data to state
+    // To be used after otp verification
+    setSignupData(values)
+    // Send OTP to user for verification
+    console.log("SEND OTP TO USER FOR VERIFICATION")
+    sendOtp(values.email, router.push)
+
     toast.success("Account created successfully!")
     form.reset()
   }

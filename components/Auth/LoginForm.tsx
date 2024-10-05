@@ -1,6 +1,7 @@
 "use client"
 
 import { useForm } from "react-hook-form"
+import { useRouter } from "next/navigation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 import Link from "next/link"
@@ -15,24 +16,30 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { login } from "@/utils/operations/authAPI"
 
-const formSchema = z.object({
+const loginSchema = z.object({
   email: z.string().email("Invalid email address"),
-  password: z.string().min(8, "Password must be at least 8 characters"),
+  password: z.string().min(6, "Password must be at least 6 characters"),
 })
 
 export default function LoginForm() {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const router = useRouter()
+
+  // 1. Define your form.
+  const form = useForm<z.infer<typeof loginSchema>>({
+    resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
       password: "",
     },
   })
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Here you would handle the login logic
-    console.log(values)
+  // 2. Define a submit handler.
+  function onSubmit(values: z.infer<typeof loginSchema>) {
+    // console.log(values)
+    login(values.email, values.password, router.push)
+    form.reset()
   }
 
   return (
