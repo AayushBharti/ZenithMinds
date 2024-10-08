@@ -1,16 +1,18 @@
 "use client"
 
 import React, { useState } from "react"
-
 import { CornerDownRight, Lightbulb } from "lucide-react"
-import Template from "../../components/Auth/AuthTemplate"
+import Template from "@/components/Auth/AuthTemplate"
+import OpenRoute from "@/components/Auth/OpenRoute"
 
 const Login: React.FC = () => {
-  const [showDemo, setShowDemo] = useState<boolean>(false)
-
+  const [showDemo, setShowDemo] = useState<boolean>(true)
+  // const dispatch = useDispatch();
+  // const router = useRouter();
 
   return (
-    <>
+    <OpenRoute>
+      {/* Demo Login ID */}
       <div
         className={`${
           showDemo ? "" : "hidden"
@@ -46,6 +48,11 @@ const Login: React.FC = () => {
             </p>
             <div>
               <button
+                // onClick={() => {
+                //   dispatch(
+                //     login("demoAccount@gmail.com", "12345", router.push)
+                //   );
+                // }}
                 className="bg-yellow-100 font-semibold mt-4 mb-1 text-richblack-900 px-4 py-2 rounded-md flex"
               >
                 <CornerDownRight className="text-2xl text-richblack-900 hidden md:block" />
@@ -54,6 +61,9 @@ const Login: React.FC = () => {
             </div>
             <div>
               <button
+                // onClick={() => {
+                //   dispatch(login("1234@gmail.com", "12345", router.push));
+                // }}
                 className="bg-yellow-100 font-semibold text-richblack-900 px-4 py-2 rounded-md flex"
               >
                 <CornerDownRight className="text-2xl text-richblack-900 md:block hidden" />
@@ -70,7 +80,7 @@ const Login: React.FC = () => {
         image="/Images/login.webp"
         formType="login"
       />
-    </>
+    </OpenRoute>
   )
 }
 
