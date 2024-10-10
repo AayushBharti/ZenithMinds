@@ -21,7 +21,7 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: {
     default: "Zentih Minds",
-    template: `%s | "Zentih Minds"`,
+    template: `%s | Zentih Minds`,
   },
   description:
     "Zentih Minds is a platform for learning and exploring the world of AI and technology.",
@@ -29,7 +29,6 @@ export const metadata: Metadata = {
     icon: "/favicon.ico",
   },
 }
-
 
 export default function RootLayout({
   children,
