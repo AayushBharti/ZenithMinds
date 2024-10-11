@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { useProfileStore } from "@/store/useProfileStore"
-import { logout } from "@/utils/operations/authAPI"
+import { logout } from "@/services/authService"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {
   DropdownMenu,

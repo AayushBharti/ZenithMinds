@@ -9,8 +9,8 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/UI/card"
-import { Badge } from "@/components/UI/badge"
+} from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 import { BookOpen } from "lucide-react"
 import HighlightText from "./HighlightedText"
 

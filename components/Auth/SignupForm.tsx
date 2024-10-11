@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { sendOtp } from "@/utils/operations/authAPI"
+import { sendOtp } from "@/services/authService"
 import { useAuthStore } from "../../store/useAuthStore"
 import { ACCOUNT_TYPE } from "../../data/constants"
 
