@@ -1,4 +1,3 @@
-// src/store/useCartStore.ts
 import { create } from "zustand"
 import { toast } from "react-hot-toast"
 
@@ -15,7 +14,7 @@ interface CartState {
   totalItems: number
   addToCart: (course: Course) => void
   removeFromCart: (courseId: string) => void
-  resetCart: () => void
+  resetCart: () => void 
 }
 
 // Create the Zustand store
@@ -45,20 +44,21 @@ export const useCartStore = create<CartState>((set) => ({
       }
 
       // If the course is not in the cart, add it to the cart
-      const newCart = [...state.cart, course]
+      // const newCart = [...state.cart, course]
+      state.cart.push(course)
 
       // Update the total quantity and price
-      const newTotalItems = state.totalItems + 1
-      const newTotal = state.total + course.price
+      state.totalItems++
+      state.total += course.price
+
+      // Update to localstorage
+      localStorage.setItem("cart", JSON.stringify(state.cart))
+      localStorage.setItem("total", JSON.stringify(state.total))
+      localStorage.setItem("totalItems", JSON.stringify(state.totalItems))
 
       // Show success toast
       toast.success("Course added to cart")
-
-      return {
-        cart: newCart,
-        total: newTotal,
-        totalItems: newTotalItems,
-      }
+      return state
     }),
 
   // Action to remove a course from the cart
@@ -68,23 +68,17 @@ export const useCartStore = create<CartState>((set) => ({
 
       if (index >= 0) {
         // If the course is found in the cart, remove it
-        const newCart = [...state.cart]
-        const coursePrice = newCart[index].price
-
-        newCart.splice(index, 1) // Remove the course from the cart
-
-        // Update total and totalItems
-        const newTotalItems = state.totalItems - 1
-        const newTotal = state.total - coursePrice
-
-        // Show success toast
+        state.totalItems--
+        state.total -= state.cart[index].price
+        state.cart.splice(index, 1)
+        // Update to localstorage
+        localStorage.setItem("cart", JSON.stringify(state.cart))
+        localStorage.setItem("total", JSON.stringify(state.total))
+        localStorage.setItem("totalItems", JSON.stringify(state.totalItems))
+        // show toast
         toast.success("Course removed from cart")
 
-        return {
-          cart: newCart,
-          total: newTotal,
-          totalItems: newTotalItems,
-        }
+        return state
       }
 
       return state // Return unchanged state if course not found
@@ -92,10 +86,15 @@ export const useCartStore = create<CartState>((set) => ({
 
   // Action to reset the cart
   resetCart: () => {
-    set({
-      cart: [],
-      total: 0,
-      totalItems: 0,
+    set((state) => {
+      state.cart = []
+      state.total = 0
+      state.totalItems = 0
+      // Update to localstorage
+      localStorage.removeItem("cart")
+      localStorage.removeItem("total")
+      localStorage.removeItem("totalItems")
+      return state
     })
   },
 }))

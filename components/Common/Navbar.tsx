@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import Link from "next/link"
 import { Book, ShoppingCart, Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -16,21 +16,15 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { cn } from "@/lib/utils"
 import ProfileDropdown from "../Auth/ProfileDropDown"
+import { useAuthStore } from "@/store/useAuthStore"
+// import { useProfileStore } from "@/store/useProfileStore"
+import { useCartStore } from "@/store/useCartStore"
 
 export default function Navbar() {
-  const [token, setToken] = useState<string | null>(null)
-  const [cartItemCount, setCartItemCount] = useState(0)
+  const { token } = useAuthStore()
+  // const {user} = useProfileStore()
+  const { totalItems } = useCartStore()
   const [isOpen, setIsOpen] = useState(false)
-
-  useEffect(() => {
-    // Simulating token retrieval from localStorage
-    const storedToken = localStorage.getItem("token")
-    setToken(storedToken)
-
-    // Simulating cart item count retrieval
-    const storedCartItemCount = localStorage.getItem("cartItemCount")
-    setCartItemCount(storedCartItemCount ? parseInt(storedCartItemCount) : 0)
-  }, [])
 
   const navItems = [
     { href: "/", label: "Home" },
@@ -106,15 +100,17 @@ export default function Navbar() {
         <div className="flex flex-1 items-center justify-end space-x-4">
           {token ? (
             <>
-              <Button variant="outline" size="icon">
-                <ShoppingCart className="h-4 w-4" />
-                <span className="sr-only">Cart</span>
-                {cartItemCount > 0 && (
-                  <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-primary text-xs text-primary-foreground flex items-center justify-center">
-                    {cartItemCount}
-                  </span>
-                )}
-              </Button>
+              <Link href="/dashboard/cart">
+                <Button variant="outline" size="icon" className="relative">
+                  <ShoppingCart className="h-4 w-4" />
+                  <span className="sr-only">Cart</span>
+                  {totalItems > 0 && (
+                    <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-primary text-xs text-primary-foreground flex items-center justify-center">
+                      {totalItems}
+                    </span>
+                  )}
+                </Button>
+              </Link>
               <ProfileDropdown />
             </>
           ) : (
