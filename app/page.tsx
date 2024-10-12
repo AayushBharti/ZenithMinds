@@ -1,10 +1,12 @@
 "use client"
+
 import Hero from "@/components/Home/Hero"
-import CodeBlocks from "../components/Home/CodeBlocks"
-import HighlightText from "../components/Home/HighlightedText"
-import InstructorSection from "../components/Home/InstructorSection"
-import { Features } from "../components/Home/Features"
-import ExploreMore from "../components/Home/ExploreMore"
+import CodeBlocks from "@/components/Home/CodeBlocks"
+import HighlightText from "@/components/Home/HighlightedText"
+import InstructorSection from "@/components/Home/InstructorSection"
+import { Features } from "@/components/Home/Features"
+import ExploreMore from "@/components/Home/ExploreMore"
+import ReviewsCarousel from "@/components/Common/ReviewCarousel"
 
 export default function Home() {
   return (
@@ -82,6 +84,7 @@ export default function Home() {
       <ExploreMore />
       <Features />
       <InstructorSection />
+      <ReviewsCarousel />
     </main>
   )
 }

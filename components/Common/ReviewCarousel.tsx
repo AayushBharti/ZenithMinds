@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button"
 import "swiper/css"
 import "swiper/css/navigation"
 import "swiper/css/pagination"
+import { cn } from "@/lib/utils"
 
 interface Review {
   id: number
@@ -90,11 +91,10 @@ const ReviewCard: React.FC<{ review: Review }> = ({ review }) => (
             {[...Array(5)].map((_, i) => (
               <Star
                 key={i}
-                className={`w-4 h-4 ${
-                  i < review.rating
-                    ? "text-yellow-500 fill-yellow-500"
-                    : "text-yellow-500 dark:text-yellow-500"
-                }`}
+                className={cn(
+                  "w-4 h-4 text-yellow-500",
+                  i < review.rating && "fill-yellow-500"
+                )}
               />
             ))}
           </div>

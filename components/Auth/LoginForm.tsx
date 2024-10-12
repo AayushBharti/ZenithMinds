@@ -16,7 +16,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { login } from "@/utils/operations/authAPI"
+import { login } from "@/services/authService"
 
 const loginSchema = z.object({
   email: z.string().email("Invalid email address"),
@@ -37,9 +37,7 @@ export default function LoginForm() {
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof loginSchema>) {
-    // console.log(values)
     login(values.email, values.password, router.push)
-    form.reset()
   }
 
   return (
@@ -68,7 +66,6 @@ export default function LoginForm() {
                 <Input
                   type="password"
                   placeholder="Enter Password"
-                  className="  pr-12"
                   {...field}
                 />
               </FormControl>
