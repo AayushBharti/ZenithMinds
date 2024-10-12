@@ -1,5 +1,4 @@
-import ArrowRight from "../UI/ArrowRight"
-import { Button } from "../UI/button"
+import { MainButton } from "../ui/ThemeButton"
 import HighlightText from "./HighlightedText"
 
 export default function InstructorSection() {
@@ -19,7 +18,7 @@ export default function InstructorSection() {
         <p className="text-left text-neutral-400 tracking-wide text-sm py-4 md:text-lg">
           Join a global community of educators and teach millions of students
           from around the world. Whether you&apos;re a professional or industry
-          expert, StudyNotion gives you the tools to create courses, share your
+          expert, ZenithMinds gives you the tools to create courses, share your
           knowledge, and grow your teaching career. With our platform, you can
           design interactive lessons, offer feedback, and connect with learners
           everywhere. Start teaching what you love and make an impact today!
@@ -30,15 +29,7 @@ export default function InstructorSection() {
         </p>
 
         <div className="w-fit">
-          <Button
-            variant={"default"}
-            className="group flex cursor-pointer items-center whitespace-nowrap leading-[1.7em] transition-opacity duration-300 hover:opacity-80 space-x-2"
-          >
-            <p className="font-semibold transition-all duration-300 group-hover:-translate-x-1 group-hover:text-ocean mr-2">
-              Start Learning Today
-            </p>
-            <ArrowRight />
-          </Button>
+          <MainButton>Start Learning Today</MainButton>
         </div>
       </div>
     </div>
