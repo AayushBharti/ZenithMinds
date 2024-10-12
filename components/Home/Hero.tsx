@@ -1,8 +1,7 @@
 import { ChevronRight } from "lucide-react"
-import { Button } from "../ui/button"
 import HighlightText from "./HighlightedText"
 import Link from "next/link"
-import ArrowRight from "../ui/ArrowRight"
+import { ButtonOutline, MainButton } from "../ui/ThemeButton"
 
 export default function Hero() {
   return (
@@ -25,18 +24,8 @@ export default function Hero() {
       </p>
 
       <div className="flex flex-row gap-7 mt-2">
-        <Button
-          variant={"default"}
-          className="group flex cursor-pointer items-center whitespace-nowrap leading-[1.7em] transition-opacity duration-300 hover:opacity-80 space-x-2"
-        >
-          <p className="font-semibold transition-all duration-300 group-hover:-translate-x-1 group-hover:text-ocean mr-2">
-            Learn More
-          </p>
-          <ArrowRight />
-        </Button>
-        <Button type="button" variant="secondary">
-          Book a Demo
-        </Button>
+        <MainButton>Learn More</MainButton>
+        <ButtonOutline>Book a Demo</ButtonOutline>
       </div>
 
       <video
