@@ -2,7 +2,7 @@ import Section from "../models/Section"
 import Course from "../models/Course"
 import { Request, Response } from "express"
 
-export const createSection = async (req: Request, res: Response) => {
+export const createSection = async (req: any, res: Response) => {
   try {
     // 1. Data fetch
     const { sectionName, courseId } = req.body
@@ -63,7 +63,7 @@ export const createSection = async (req: Request, res: Response) => {
 }
 
 // UPDATE a section
-export const updateSection = async (req: Request, res: Response) => {
+export const updateSection = async (req: any, res: Response) => {
   try {
     // 1. Data fetch
     const { sectionName, sectionId, courseId } = req.body
@@ -116,7 +116,7 @@ export const updateSection = async (req: Request, res: Response) => {
 }
 
 // DELETE a section
-exports.deleteSection = async (req: Request, res: Response) => {
+export const deleteSection = async (req: any, res: Response) => {
   try {
     const { sectionId, courseId } = req.body
     await Section.findByIdAndDelete(sectionId)

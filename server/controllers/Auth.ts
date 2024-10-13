@@ -12,7 +12,7 @@ import dotenv from "dotenv"
 dotenv.config()
 
 // Send OTP For Email Verification
-export const sendotp = async (req: Request, res: Response) => {
+export const sendotp = async (req: any, res: Response) => {
   try {
     const { email } = req.body
 
@@ -74,7 +74,7 @@ export const sendotp = async (req: Request, res: Response) => {
 }
 
 // Signup Controller for Registering USers
-export const signup = async (req: Request, res: Response) => {
+export const signup = async (req: any, res: Response) => {
   try {
     // Destructure fields from the request body
     const {
@@ -184,7 +184,7 @@ export const signup = async (req: Request, res: Response) => {
 }
 
 // Login controller for authenticating users
-export const login = async (req: Request, res: Response) => {
+export const login = async (req: any, res: Response) => {
   try {
     // 1.Get email and password from request body
     const { email, password } = req.body
@@ -254,7 +254,7 @@ export const login = async (req: Request, res: Response) => {
 }
 
 //Changing Password
-export const changePassword = async (req: Request, res: Response) => {
+export const changePassword = async (req: any, res: Response) => {
   try {
     // 1.Get user data from req.user
     const userDetails = await User.findById(req.user?.id)
@@ -312,7 +312,10 @@ export const changePassword = async (req: Request, res: Response) => {
           `Password updated successfully for ${updatedUserDetails?.firstName} ${updatedUserDetails?.lastName}`
         )
       )
-      console.log("Email sent successfully:", emailResponse.response)
+      console.log(
+        "Email sent successfully:",
+        (emailResponse as { response: string }).response
+      )
     } catch (error) {
       // If there's an error sending the email, log the error and return a 500 (Internal Server Error) error
       console.error("Error occurred while sending email:", error)

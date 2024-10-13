@@ -5,7 +5,7 @@ import dotenv from "dotenv"
 dotenv.config()
 
 // Define the connection function
-const connect = () => {
+const DBconnect = () => {
   mongoose
     .connect(process.env.MONGODB_URL as string)
     .then(() => console.log("DB Connected Successfully"))
@@ -17,4 +17,4 @@ const connect = () => {
 }
 
 // Export the connection function
-export { connect }
+export { DBconnect }

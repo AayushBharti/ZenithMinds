@@ -5,7 +5,7 @@ import bcrypt from "bcrypt"
 import crypto from "crypto"
 
 export const resetPasswordToken = async (
-  req: Request,
+  req: any,
   res: Response
 ) => {
   try {
@@ -63,7 +63,7 @@ export const resetPasswordToken = async (
 }
 
 export const resetPassword = async (
-  req: Request,
+  req: any,
   res: Response
 ) => {
   try {

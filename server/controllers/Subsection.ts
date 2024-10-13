@@ -5,7 +5,7 @@ import Course from "../models/Course"
 import { uploadImageToCloudinary } from "../utils/imageUploader"
 
 // Create a new sub-section for a given section
-export const createSubSection = async (req: Request, res: Response) => {
+export const createSubSection = async (req: any, res: Response) => {
   try {
     // Extract necessary information from the request body
     const { sectionId, title, description, courseId } = req.body
@@ -29,7 +29,7 @@ export const createSubSection = async (req: Request, res: Response) => {
 
     // Upload the video file to Cloudinary
     const uploadDetails = await uploadImageToCloudinary(
-      video,
+      Array.isArray(video) ? video[0] : video,
       process.env.FOLDER_VIDEO as string
     )
 
@@ -72,7 +72,7 @@ export const createSubSection = async (req: Request, res: Response) => {
 }
 
 // UPDATE a sub-section
-export const updateSubSection = async (req: Request, res: Response) => {
+export const updateSubSection = async (req: any, res: Response) => {
   try {
     // Extract necessary information from the request body
     const { SubsectionId, title, description, courseId } = req.body
@@ -92,7 +92,7 @@ export const updateSubSection = async (req: Request, res: Response) => {
     // Upload the video file to Cloudinary (if provided)
     if (video) {
       uploadDetails = await uploadImageToCloudinary(
-        video,
+        Array.isArray(video) ? video[0] : video,
         process.env.FOLDER_VIDEO as string
       )
     }
@@ -139,7 +139,7 @@ export const updateSubSection = async (req: Request, res: Response) => {
 }
 
 export const deleteSubSection = async (
-  req: Request,
+  req: any,
   res: Response
 ): Promise<Response> => {
   try {

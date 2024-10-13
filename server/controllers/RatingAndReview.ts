@@ -5,12 +5,12 @@ import { default as mongoose } from "mongoose"
 
 // Function to create a rating and review for a course
 export const createRating = async (
-  req: Request,
+  req: any,
   res: Response
 ): Promise<Response> => {
   try {
     // Extract user ID and rating details from the request
-    const userId = req.user.id
+    const userId = req.user?.id
     const { rating, review, courseId } = req.body
 
     // Check if the course exists and if the user is enrolled
@@ -73,7 +73,7 @@ export const createRating = async (
 
 // Function to get the average rating for a specific course
 export const getAverageRating = async (
-  req: Request,
+  req: any,
   res: Response
 ): Promise<Response> => {
   try {
@@ -136,7 +136,7 @@ export const getAverageRating = async (
 
 // Function to get all ratings sorted by rating
 export const getAllRating = async (
-  req: Request,
+  req: any,
   res: Response
 ): Promise<Response> => {
   try {

@@ -5,10 +5,10 @@ import User from "../models/User"
 import { uploadImageToCloudinary } from "../utils/imageUploader"
 
 // Function to create a new course
-export const createCourse = async (req: Request, res: Response) => {
+export const createCourse = async (req: any, res: Response) => {
   try {
     // Get user ID from request object
-    const userId = req.user.id
+    const userId = req.user?.id
 
     // Get all required fields from request body
     const {
@@ -21,7 +21,7 @@ export const createCourse = async (req: Request, res: Response) => {
       instructions,
     } = req.body
 
-    let status = req.body
+    let {status} = req.body
 
     // Get thumbnail image from request files
     const thumbnail = req.files?.thumbnailImage
@@ -41,6 +41,7 @@ export const createCourse = async (req: Request, res: Response) => {
         message: "All Fields are Mandatory",
       })
     }
+
     if (!status || status === undefined) {
       status = "Draft"
     }
@@ -73,7 +74,8 @@ export const createCourse = async (req: Request, res: Response) => {
         message: "Invalid FOLDER_NAME in env",
       })
     }
-    const thumbnailImage = await uploadImageToCloudinary(thumbnail, folderName)
+
+    const thumbnailImage = await uploadImageToCloudinary(Array.isArray(thumbnail) ? thumbnail[0] : thumbnail, folderName)
     console.log(thumbnailImage)
     // Create a new course with the given details
     const newCourse = await Course.create({
@@ -85,7 +87,7 @@ export const createCourse = async (req: Request, res: Response) => {
       tag: tag,
       category: categoryDetails._id,
       thumbnail: thumbnailImage.secure_url,
-      status: status,
+      status,
       instructions: instructions,
     })
 
@@ -127,7 +129,7 @@ export const createCourse = async (req: Request, res: Response) => {
 }
 
 //getALlCourses
-export const getAllCourses = async (req: Request, res: Response) => {
+export const getAllCourses = async (req: any, res: Response) => {
   try {
     const allCourses = await Course.find(
       {},
@@ -159,7 +161,7 @@ export const getAllCourses = async (req: Request, res: Response) => {
 
 //getCourseDetails
 export const getCourseDetails = async (
-  req: Request,
+  req: any,
   res: Response
 ): Promise<Response> => {
   try {

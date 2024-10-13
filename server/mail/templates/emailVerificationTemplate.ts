@@ -1,4 +1,4 @@
-export const otpTemplate = (otp: number) => {
+export const otpTemplate = (otp: string) => {
   return `<!DOCTYPE html>
 	<html>
 	

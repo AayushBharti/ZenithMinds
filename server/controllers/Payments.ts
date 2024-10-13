@@ -9,10 +9,10 @@ import { default as mongoose } from "mongoose"
 import crypto from "crypto"
 import CourseProgress from "../models/CourseProgress"
 
-export const capturePayment = async (req: Request, res: Response) => {
+export const capturePayment = async (req: any, res: Response) => {
   //get courseId and UserID
   const { courses } = req.body
-  const userId = req.user.id
+  const userId = req.user?.id
   try {
     // Validate the courses array
     if (!Array.isArray(courses) || courses.length === 0) {
@@ -96,7 +96,7 @@ export const capturePayment = async (req: Request, res: Response) => {
 }
 
 //verify the signature
-export const verifySignature = async (req: Request, res: Response) => {
+export const verifySignature = async (req: any, res: Response) => {
   try {
     // Extract payment and course details from the request body
     const {
@@ -105,7 +105,7 @@ export const verifySignature = async (req: Request, res: Response) => {
       razorpay_signature,
       courses,
     } = req.body
-    const userId = req.user.id
+    const userId = req.user?.id
 
     // Validate that the necessary payment details are present
     if (!razorpay_payment_id || !razorpay_order_id || !razorpay_signature) {
@@ -213,7 +213,7 @@ export const verifySignature = async (req: Request, res: Response) => {
 
     if (generatedSignature === razorpay_signature) {
       // If the signature is valid, proceed with course enrollment
-      return await enrollStudent(courses, userId)
+      return await enrollStudent(courses, userId as string)
     } else {
       // If the signature is invalid, return an error
       return res.status(400).json({
@@ -232,9 +232,9 @@ export const verifySignature = async (req: Request, res: Response) => {
 }
 
 //send email
-export const sendPaymentSuccessEmail = async (req: Request, res: Response) => {
+export const sendPaymentSuccessEmail = async (req: any, res: Response) => {
   const { amount, paymentId, orderId } = req.body
-  const userId = req.user.id
+  const userId = req.user?.id
   if (!amount || !paymentId) {
     return res.status(400).json({
       success: false,
