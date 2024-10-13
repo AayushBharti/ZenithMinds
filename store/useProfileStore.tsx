@@ -5,13 +5,24 @@ interface User {
   lastName: string
   email: string
   image: string
+  accountType: string
+  additionalDetails: {
+    gender: string
+    dateOfBirth: string
+    about: string
+    contactNumber: string
+  }
+  createdAt: string
+  updatedAt:string
+  active: string
+  approved: string
 }
 
 // Profile state interface
 interface ProfileState {
   user: User | null
   loading: boolean
-  setuser: (user: User | null) => void
+  setUser: (user: User | null) => void
   setLoading: (loading: boolean) => void
 }
 
@@ -24,7 +35,7 @@ export const useProfileStore = create<ProfileState>((set) => ({
   loading: false,
 
   // Action to set the user
-  setuser: (user) => {
+  setUser: (user) => {
     set({ user })
     localStorage.setItem("user", JSON.stringify(user))
   },
